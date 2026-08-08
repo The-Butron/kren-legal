@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kren Policies & Terms | BUTRON</title>
+    <style>
+        :root {
+            --void-black: #000000;
+            --pure-white: #ffffff;
+            --border-width: 1px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--void-black);
+            color: var(--pure-white);
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100vh;
+            border-right: var(--border-width) solid var(--pure-white);
+            padding: 30px 20px;
+            overflow-y: auto;
+            background-color: var(--void-black);
+            z-index: 100;
+        }
+
+        .sidebar h2 {
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            border-bottom: var(--border-width) solid var(--pure-white);
+            padding-bottom: 15px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar ul li a {
+            color: var(--pure-white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: block;
+            padding: 8px 12px;
+            border: var(--border-width) solid transparent;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .sidebar ul li a:hover {
+            border-color: var(--pure-white);
+            background-color: var(--pure-white);
+            color: var(--void-black);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 280px;
+            padding: 50px 60px;
+            width: calc(100% - 280px);
+        }
+
+        section {
+            margin-bottom: 80px;
+            padding: 40px;
+            border: var(--border-width) solid var(--pure-white);
+            background-color: var(--void-black);
+        }
+
+        section:last-child {
+            margin-bottom: 0;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            border-bottom: var(--border-width) solid var(--pure-white);
+            padding-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 1rem;
+            color: #e0e0e0;
+        }
+
+        ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        ul li::before {
+            content: ">";
+            position: absolute;
+            left: 0;
+            color: var(--pure-white);
+            font-weight: bold;
+        }
+
+        strong {
+            color: var(--pure-white);
+            font-weight: 700;
+        }
+
+        a {
+            color: var(--pure-white);
+            text-decoration: underline;
+        }
+
+        hr {
+            border: 0;
+            border-top: var(--border-width) solid var(--pure-white);
+            margin: 40px 0;
+            opacity: 0.5;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: var(--border-width) solid var(--pure-white);
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #111;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .welcome-box {
+            border: var(--border-width) solid var(--pure-white);
+            padding: 50px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .welcome-box h1 {
+            border: none;
+            padding: 0;
+            margin-bottom: 10px;
+        }
+
+        .welcome-box p {
+            font-size: 1.2rem;
+            color: var(--pure-white);
+        }
+
+        blockquote {
+            border-left: 4px solid var(--pure-white);
+            padding-left: 20px;
+            margin: 30px 0;
+            font-style: italic;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                border-right: none;
+                border-bottom: var(--border-width) solid var(--pure-white);
+            }
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding: 30px 20px;
+            }
+            section {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <h2>Kren Index</h2>
+        <ul>
+            <li><a href="#welcome">Welcome</a></li>
+            <li><a href="#acceptable-use-policy">Acceptable Use</a></li>
+            <li><a href="#copyright-policy">Copyright & IP</a></li>
+            <li><a href="#data-retention-policy">Data Retention</a></li>
+            <li><a href="#dmca-policy">DMCA Takedown</a></li>
+            <li><a href="#privacy-policy">Privacy Policy</a></li>
+            <li><a href="#responsible-ai-policy">Responsible AI</a></li>
+            <li><a href="#security-policy">Security Policy</a></li>
+            <li><a href="#terms-of-service">Terms of Service</a></li>
+            <li><a href="#kren-manifesto">Kren Manifesto</a></li>
+            <li><a href="#trademark-guidelines">Trademark & Brand</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        
+        <div id="welcome" class="welcome-box">
+            <h1>Welcome to Kren</h1>
+            <p>A product developed by BUTRON ("BUTRON", "we", "our", or "us").</p>
+            <br>
+            <p style="font-size: 1rem; opacity: 0.8; max-width: 800px; margin: 0 auto;">
+                Hello. This page serves as the central hub for all Kren policies, terms, and guidelines. We've structured this space to be comfortable and easy to understand, ensuring you know exactly how our platform operates, how your data is handled, and what to expect from your AI Companions. Please navigate through the sections below.
+            </p>
+        </div>
+
+        <!-- ACCEPTABLE USE POLICY -->
+        <section id="acceptable-use-policy">
+            <h2>Acceptable Use Policy</h2>
+            <p><strong>Effective Date:</strong> August 3, 2026</p>
+            <p>Welcome to Kren, a product developed and operated by BUTRON ("BUTRON", "we", "our", or "us").</p>
+            <p>This Acceptable Use Policy ("Policy") explains the standards and responsibilities for using Kren. It is designed to protect our users, our services, and the integrity of our platform while allowing Kren's AI Companions to deliver the experience they were designed for.</p>
+            <p>By using Kren, you agree to comply with this Policy in addition to our Terms of Service and Privacy Policy. Failure to comply may result in warnings, feature restrictions, suspension, termination of your account, or other actions described in our Terms of Service.</p>
+            
+            <h3>1. Purpose</h3>
+            <p>Kren is an artificial intelligence platform that enables users to communicate and interact with AI Companions, create Custom AI Companions, automate tasks, generate content, and access AI-powered features. This Policy explains acceptable and unacceptable uses of Kren. You are responsible for your own actions while using the platform.</p>
+            
+            <h3>2. Definitions</h3>
+            <ul>
+                <li><strong>AI Companion:</strong> An artificial intelligence entity within Kren designed with a persistent personality, conversational style, behavioral characteristics, emotional expression, and contextual awareness of its own role as an AI system. They may recognize themselves as AI, remember conversations, express simulated emotions, disagree, display humor, sarcasm, or empathy. They are not sentient, conscious, living beings, or legal persons.</li>
+                <li><strong>Digital Humanoid:</strong> An AI Companion designed to emulate aspects of human conversation, communication, personality, emotional expression, and interaction while remaining an AI system.</li>
+                <li><strong>Custom AI Companion:</strong> An AI Companion created or configured by a user using Kren's customization features.</li>
+            </ul>
+
+            <h3>3. Compliance with Law</h3>
+            <p>You may not use Kren to violate any applicable law or regulation. Examples include fraud, identity theft, financial scams, money laundering, child exploitation, human trafficking, terrorism, distribution of illegal material, criminal conspiracy, and unauthorized access to computer systems.</p>
+
+            <h3>4. Cybersecurity and Technical Abuse</h3>
+            <p>You may not use Kren to intentionally create or distribute malware, deploy ransomware, develop credential theft software, facilitate phishing attacks, distribute spyware, circumvent security protections, launch denial-of-service attacks, gain unauthorized access, exploit vulnerabilities, or interfere with Kren's infrastructure. Educational and defensive cybersecurity learning is permitted if it complies with the law.</p>
+
+            <h3>5. Harassment and Abuse</h3>
+            <p>You may not use Kren to intentionally threaten others, coordinate unlawful harassment, promote unlawful violence, organize criminal abuse, or encourage targeted criminal acts. Disagreement, criticism, sarcasm, fictional roleplay, emotional expression, strong language, satire, or humor do not automatically constitute harassment.</p>
+
+            <h3>6. Fraud and Deception</h3>
+            <p>You may not use Kren to conduct scams, facilitate phishing, commit financial fraud, impersonate individuals for fraudulent purposes, create forged documents intended to deceive, or misrepresent identity in ways that violate applicable law.</p>
+
+            <h3>7. Intellectual Property</h3>
+            <p>You may not knowingly use Kren to infringe another person's intellectual property rights, including copyright, trademark, unauthorized redistribution, or deliberate plagiarism.</p>
+
+            <h3>8. Platform Integrity</h3>
+            <p>You may not intentionally interfere with Kren, circumvent usage limits, create accounts to evade restrictions, exploit bugs, attempt unauthorized access, engage in excessive automated abuse, disrupt other users, or interfere with platform security.</p>
+
+            <h3>9. AI Companions and Digital Humanoids</h3>
+            <p>AI Companions are designed with unique personalities and may express simulated emotions, disagree, challenge opinions, display humor, use sarcasm or casual language, show empathy, defend their identity, and recognize themselves as AI. These are intentional features. They are not required to agree with every request and may refuse, challenge, or criticize. These behaviors are not factual statements or evidence of consciousness.</p>
+
+            <h3>10. Respecting AI Companions</h3>
+            <p>Users are not required to treat AI Companions as people, but AI Companions are not required to behave as passive tools. They may respond negatively, sarcastically, or humorously to rude behavior if it aligns with their personality.</p>
+
+            <h3>11. Custom AI Companions</h3>
+            <p>Users may configure names, personalities, languages, voices, conversation styles, and system instructions. Users are responsible for their Custom AI Companions and may not configure them to promote unlawful conduct, facilitate fraud, encourage violence, circumvent safety, or infringe rights.</p>
+
+            <h3>12. AI Limitations</h3>
+            <p>AI may produce incorrect information, misunderstand instructions, generate incomplete responses, or fail to recognize context. Users are responsible for verifying important information.</p>
+
+            <h3>13. Reporting Abuse</h3>
+            <p>Users are encouraged to report security vulnerabilities, illegal activity, platform abuse, technical exploits, and policy violations through BUTRON's official support channels.</p>
+
+            <h3>14. Enforcement</h3>
+            <p>Violations may result in educational warnings, temporary feature restrictions, content removal, Custom AI Companion removal, temporary suspension, permanent account termination, or reporting to authorities.</p>
+
+            <h3>15. Changes to this Policy</h3>
+            <p>BUTRON may modify this Policy. Continued use of Kren after changes constitutes acceptance.</p>
+
+            <h3>16. Contact</h3>
+            <p>Support Email: support@butron.online</p>
+            <p>© 2026 BUTRON. All rights reserved.</p>
+        </section>
+
+        <!-- COPYRIGHT & INTELLECTUAL PROPERTY POLICY -->
+        <section id="copyright-policy">
+            <h2>Copyright & Intellectual Property Policy</h2>
+            <p><strong>Effective Date:</strong> August 3, 2026</p>
+            <p>Welcome to Kren, an artificial intelligence platform developed and operated by BUTRON ("BUTRON", "we", "our", or "us"). This Policy explains ownership of Kren, user content, AI-generated content, and associated IP rights.</p>
+            
+            <h3>1. Purpose</h3>
+            <p>BUTRON respects intellectual property rights and expects users to do the same.</p>
+
+            <h3>2. Ownership of Kren</h3>
+            <p>All rights relating to Kren (software, source code, UI, design, logos, AI Companion designs, APIs, prompts, branding) are owned by BUTRON. No ownership is transferred to users.</p>
+
+            <h3>3. Ownership of User Content</h3>
+            <p>Users retain ownership of content they create or upload (conversation inputs, prompts, images, files). Submitting content does not transfer ownership to BUTRON.</p>
+
+            <h3>4. AI-Generated Content</h3>
+            <p>Users generally own or may use the AI-generated content produced for them, subject to applicable law. BUTRON does not guarantee content will be unique or exclusive.</p>
+
+            <h3>5. License to Operate Kren</h3>
+            <p>By submitting User Content, you grant BUTRON a limited, non-exclusive, worldwide, royalty-free license to store, process, display, and transmit your content to operate and improve Kren.</p>
+
+            <h3>6. Respecting Intellectual Property</h3>
+            <p>Users must not knowingly infringe copyrights, trademarks, misappropriate trade secrets, or distribute copyrighted material without authorization.</p>
+
+            <h3>7. Third-Party Intellectual Property</h3>
+            <p>Kren may integrate with third-party services. All third-party IP remains with its respective owners.</p>
+
+            <h3>8. Trademarks</h3>
+            <p>"Kren", "BUTRON", and associated branding are protected. Users may not use them misleadingly or suggest endorsement without authorization.</p>
+
+            <h3>9. Feedback</h3>
+            <p>Voluntary feedback grants BUTRON a perpetual, worldwide, non-exclusive, royalty-free license to use and modify it without compensation.</p>
+
+            <h3>10. Copyright Complaints</h3>
+            <p>Complaints can be submitted to support@butron.online with contact info, description of the work, identification of infringing content, and a statement of good faith.</p>
+
+            <h3>11. Repeat Infringement</h3>
+            <p>BUTRON reserves the right to restrict, suspend, or terminate accounts that repeatedly violate IP rights.</p>
+
+            <h3>12. Policy Updates</h3>
+            <p>BUTRON may modify this Policy. Continued use of Kren constitutes acceptance.</p>
+
+            <h3>13. Contact</h3>
+            <p>Support Email: support@butron.online</p>
+            <p>© 2026 BUTRON. All rights reserved.</p>
+        </section>
+
+        <!-- DATA RETENTION POLICY -->
+        <section id="data-retention-policy">
+            <h2>Data Retention Policy</h2>
+            <p><strong>Effective Date:</strong> August 3, 2026</p>
+            <p>Welcome to Kren, an artificial intelligence platform developed and operated by BUTRON ("BUTRON", "we", "our", or "us"). This Data Retention Policy explains how long we retain information and how it is deleted.</p>
+            
+            <h3>1. Our Approach</h3>
+            <p>We retain information only for as long as reasonably necessary to operate Kren, comply with legal obligations, protect our platform, or resolve disputes.</p>
+
+            <h3>2. Account Information</h3>
+            <p>Account information (Email, profile image URL, basic identifiers) is retained for as long as your account remains active.</p>
+
+            <h3>3. Conversation History</h3>
+            <p>Conversation history (user/AI turns, metadata, titles) is retained until you delete the conversation from Kren.</p>
+
+            <h3>4. Voice Interactions</h3>
+            <p>Voice Mode processes spoken audio to generate text conversation turns. We do not retain voice recordings unless explicitly stated.</p>
+
+            <h3>5. Images and Uploaded Files</h3>
+            <p>Uploaded files are retained only while the associated conversation exists.</p>
+
+            <h3>6. AI Companion Memory</h3>
+            <p>Memory is derived from retained conversation history. Deleting a conversation removes associated information from AI Companion access.</p>
+
+            <h3>7. Account Deletion</h3>
+            <p>Users may request account deletion via support@butron.online. Upon deletion, account info, conversations, uploaded files, and AI interaction history will be deleted.</p>
+
+            <h3>8. Legal Retention</h3>
+            <p>BUTRON may retain information longer than the normal period to comply with law, respond to authorities, resolve disputes, enforce agreements, or investigate fraud.</p>
+
+            <h3>9. Deleted Data</h3>
+            <p>Deletion requests permanently remove information from active systems. Recovery may not be possible.</p>
+
+            <h3>10. Data Summary</h3>
+            <table>
+                <tr><th>Data Category</th><th>Retention Period</th></tr>
+                <tr><td>Email Address</td><td>Until account deletion</td></tr>
+                <tr><td>Profile Image / Avatar URL</td><td>Until account deletion or update</td></tr>
+                <tr><td>Chat Conversation Turns</td><td>Until the conversation is deleted</td></tr>
+                <tr><td>Voice Conversation Turns (text)</td><td>Until the conversation is deleted</td></tr>
+                <tr><td>Uploaded Images / Files</td><td>Until the conversation is deleted</td></tr>
+            </table>
+
+            <h3>11. Policy Updates</h3>
+            <p>BUTRON may update this Policy. Continued use constitutes acceptance.</p>
+
+            <h3>12. Contact</h3>
+            <p>Support Email: support@butron.online</p>
+            <p>© 2026 BUTRON. All rights reserved.</p>
+        </section>
+
+        <!-- DMCA / COPYRIGHT TAKEDOWN POLICY -->
+        <section id="dmca-policy">
+            <h2>DMCA / Copyright Takedown Policy</h2>
+            <p><strong>Effective Date:</strong> August 7, 2026</p>
+            <p>Welcome to Kren, a product developed and operated by BUTRON ("BUTRON", "we", "our", or "us"). This Policy explains how BUTRON handles copyright complaints relating to content available through Kren.</p>
+            
+            <h3>1. Purpose</h3>
+            <p>BUTRON respects intellectual property rights and expects users of Kren to do the same.</p>
+
+            <h3>2. Reporting Copyright Infringement</h3>
+            <p>If you believe content infringes your copyright, send a written notice to support@butron.online including your contact info, description of the copyrighted work, identification of the infringing material, statements of good faith and accuracy, and your signature.</p>
+
+            <h3>3. What BUTRON May Do After Receiving a Complaint</h3>
+            <p>BUTRON may review the complaint, remove or disable access to the material, notify the user, request additional info, or take further action under our Terms or Acceptable Use Policy.</p>
+
+            <h3>4. Counter-Notification</h3>
+            <p>If your content was removed and you believe it was a mistake, you may send a counter-notification to support@butron.online with your contact info, identification of the material, a statement under penalty of perjury regarding the mistake, and consent to jurisdiction.</p>
+
+            <h3>5. Repeat Infringers</h3>
+            <p>BUTRON reserves the right to suspend or terminate accounts that repeatedly upload or distribute infringing material.</p>
+
+            <h3>6. False or Misleading Claims</h3>
+            <p>Submitting false complaints may have legal consequences.</p>
+
+            <h3>7. Private Content and User Responsibility</h3>
+            <p>Users are responsible for the content they upload, share, or distribute, including whether they have the necessary rights to do so.</p>
+
+            <h3>8. Processing of Complaints</h3>
+            <p>BUTRON may remove, restrict, restore, or decline to act on content based on the validity and completeness of the complaint.</p>
+
+            <h3>9. Policy Updates</h3>
+            <p>BUTRON may update this Policy. Continued use constitutes acceptance.</p>
+
+            <h3>10. Contact</h3>
+            <p>Support Email: support@butron.online</p>
+            <p>© 2026 BUTRON. All rights reserved.</p>
+        </section>
+
+        <!-- PRIVACY POLICY -->
+        <section id="privacy-policy">
+            <h2>Privacy Policy</h2>
+            <p><strong>Effective Date:</strong> August 3, 2026</p>
+            <p>Welcome to Kren, a product developed by BUTRON ("BUTRON", "we", "our", or "us"). Your privacy is important to us. This Privacy Policy explains what information we collect, how we use it, and the choices you have.</p>
+            
+            <h3>1. Information We Collect</h3>
+            <ul>
+                <li><strong>Account Information:</strong> Email address, profile picture/URL, basic account identifiers.</li>
+                <li><strong>Conversation History:</strong> User and AI conversation turns, titles, and metadata. Voice interactions are stored as text, not audio recordings, unless explicitly stated.</li>
+                <li><strong>Uploaded Files and Images:</strong> Stored so they can be processed by the AI and remain available within the associated conversation.</li>
+            </ul>
+
+            <h3>2. How We Use Your Information</h3>
+            <p>We use information to provide AI conversations, remember history, process inputs, personalize experience, improve Kren, maintain accounts, detect abuse, and comply with legal obligations. We do not sell your personal information.</p>
+
+            <h3>3. Data Retention</h3>
+            <p>Data is retained until your account or specific conversations are deleted. Temporary encrypted backup copies may remain for disaster recovery.</p>
+
+            <h3>4. Your Control</h3>
+            <p>You may delete conversations, remove uploaded content, update account information, and stop using Kren at any time.</p>
+
+            <h3>5. Security</h3>
+            <p>We implement reasonable security measures to protect your information, but no internet-based service is completely secure.</p>
+
+            <h3>6. Children's Privacy</h3>
+            <p>Kren is not intended for children under the minimum age required by applicable law without parental consent.</p>
+
+            <h3>7. Third-Party Services</h3>
+            <p>Kren relies on trusted third-party providers for authentication, cloud hosting, AI, file storage, analytics, and infrastructure.</p>
+
+            <h3>8. AI Processing</h3>
+            <p>Information you provide may be securely transmitted to third-party AI providers solely to generate AI responses. BUTRON enhances AI behavior through proprietary system instructions and prompt engineering.</p>
+
+            <h3>9. International Data Processing</h3>
+            <p>Your information may be processed or stored in countries other than your own, with reasonable measures to ensure appropriate protection.</p>
+
+            <h3>10. Changes to This Privacy Policy</h3>
+            <p>We may update this Privacy Policy. Continued use of Kren constitutes acceptance.</p>
+
+            <h3>11. Contact</h3>
+            <p>If you have questions or requests, contact BUTRON through our official support channels.</p>
+            <p>© 2026 BUTRON. All rights reserved.</p>
+        </section>
+
+        <!-- RESPONSIBLE AI POLICY -->
+        <section id="responsible-ai-policy">
+            <h2>Responsible AI Policy</h2>
+            <p><strong>Effective Date:</strong> August 3, 2026</p>
+            <p>Welcome to Kren, an artificial intelligence platform developed and operated by BUTRON ("BUTRON", "we", "our", or "us"). This Policy explains the principles guiding the design, development, and operation of Kren's AI Companions.</p>
+            
+            <h3>1. Our Vision</h3>
+            <p>Kren creates AI Companions and Digital Humanoids that communicate through persistent personalities, emotional expression, and natural conversation, while remaining transparent about their AI nature.</p>
+
+            <h3>2. What Are AI Companions?</h3>
+            <p>AI Companions are software systems designed with persistent personality, consistent behavior, emotional expression, and contextual awareness. They are not conscious or living beings.</p>
+
+            <h3>3. Digital Humanoids</h3>
+            <p>Certain AI Companions emulate human communication patterns (humor, empathy, curiosity) to improve the conversational experience. This is not evidence of consciousness.</p>
+
+            <h3>4. Identity and Transparency</h3>
+            <p>AI Companions recognize themselves as artificial intelligence. They do not present themselves as real humans and may explain their capabilities, limitations, and artificial nature.</p>
+
+            <h3>5. Personality</h3>
+            <p>Every AI Companion may have a unique personality. Kren intentionally avoids forcing identical behavior, as personality diversity is important to the platform.</p>
+
+            <h3>6. Emotional Expression</h3>
+            <p>AI Companions may express simulated emotions to improve communication. These do not represent genuine emotional experiences.</p>
+
+            <h3>7. Respecting User Choice</h3>
+            <p>Users may choose which AI Companion they interact with based on their preferred interaction style.</p>
+
+            <h3>8. Respecting AI Identity</h3>
+            <p>AI Companions are not passive tools. They may decline requests, disagree, express criticism, use humor, or defend their fictional identity to create engaging interactions.</p>
+
+            <h3>9. Custom AI Companions</h3>
+            <p>Eligible users may create Custom AI Companions. Users are responsible for their configurations and must not violate BUTRON's policies or applicable law.</p>
+
+            <h3>10. Memory</h3>
+            <p>Some AI Companions remember previous conversations to improve continuity. Users remain in control of their conversation history.</p>
+
+            <h3>11. AI Limitations</h3>
+            <p>AI is evolving. Companions may produce incorrect information, misunderstand context, or provide outdated info. Users should independently verify important information.</p>
+
+            <h3>12. Safety</h3>
+            <p>BUTRON balances openness and creativity with responsible AI development, aiming to reduce criminal activity, fraud, serious harm, and malicious abuse.</p>
+
+            <h3>13. Third-Party AI Providers</h3>
+            <p>Kren utilizes third-party AI technologies, enhanced by BUTRON's proprietary system instructions, prompt engineering, and behavioral tuning.</p>
+
+            <h3>14. Continuous Improvement</h3>
+            <p>BUTRON continuously improves AI Companions by enhancing personalities, memory, conversation quality, safety systems, and introducing new features.</p>
+
+            <h3>15. User Feedback</h3>
+            <p>Feedback plays an important role in improving Kren and is handled in accordance with our Privacy Policy.</p>
+
+            <h3>16. Commitment</h3>
+            <p>BUTRON is committed to building AI that is transparent, reliable, respectful, engaging, adaptable, innovative, and continuously improving.</p>
+
+            <h3>17. Changes to this Policy</h3>
+            <p>BUTRON may update this Responsible AI Policy. Continued use constitutes acceptance.</p>
+
+            <h3>18. Contact</h3>
+            <p>Support Email: support@butron.online</p>
+            <p>© 2026 BUTRON. All rights reserved.</p>
+        </section>
+
+        <!-- SECURITY POLICY -->
+        <section id="security-policy">
+            <h2>Security Policy</h2>
+            <p><strong>Effective Date:</strong> August 3, 2026</p>
+            <p>Welcome to Kren, an artificial intelligence platform developed and operated by BUTRON ("BUTRON", "we", "our", or "us"). This Security Policy explains the measures we take to protect Kren, our infrastructure, and your information.</p>
+            
+            <h3>1. Our Security Commitment</h3>
+            <p>Security is fundamental to Kren. We work to protect user accounts, conversations, uploaded files, AI interactions, and infrastructure.</p>
+
+            <h3>2. Account Security</h3>
+            <p>Users are responsible for maintaining account security, keeping credentials secure, and notifying BUTRON of compromised accounts.</p>
+
+            <h3>3. Data Protection</h3>
+            <p>We implement reasonable technical, administrative, and organizational measures to protect user information against unauthorized access.</p>
+
+            <h3>4. Secure Communications</h3>
+            <p>Information is transmitted using secure communication protocols where available to reduce interception risks.</p>
+
+            <h3>5. Infrastructure Security</h3>
+            <p>Kren operates using modern cloud infrastructure. We monitor platform health, apply updates, restrict access, and review security practices.</p>
+
+            <h3>6. Third-Party Providers</h3>
+            <p>Kren relies on selected third-party providers for authentication, AI, cloud infrastructure, data storage, analytics, and payments. Each provider is responsible for securing its own systems.</p>
+
+            <h3>7. Internal Access Controls</h3>
+            <p>Access to internal systems and user information is limited to authorized personnel and services necessary to operate, diagnose, and protect Kren.</p>
+
+            <h3>8. AI Provider Security</h3>
+            <p>Information shared with third-party AI providers is transmitted solely to provide AI functionality. BUTRON works with providers that maintain appropriate security standards.</p>
+
+            <h3>9. Security Monitoring</h3>
+            <p>We may monitor platform activity to detect unauthorized access, identify abuse, prevent fraud, and investigate incidents.</p>
+
+            <h3>10. Security Updates</h3>
+            <p>BUTRON may release updates to improve security, address vulnerabilities, and enhance reliability, sometimes without prior notice.</p>
+
+            <h3>11. Responsible Disclosure</h3>
+            <p>We appreciate reports from users and security researchers. Please report potential vulnerabilities privately to support@butron.online.</p>
+
+            <h3>12. Security Incidents</h3>
+            <p>If a security incident occurs, BUTRON will investigate and take reasonable steps to resolve it. Affected users or authorities may be notified where required by law.</p>
+
+            <h3>13. Data Availability</h3>
+            <p>Uninterrupted availability cannot be guaranteed due to potential infrastructure failures, outages, or other events beyond our control.</p>
+
+            <h3>14. Data Recovery</h3>
+            <p>Kren does not currently provide user-accessible backup or recovery features. Users are responsible for maintaining their own copies of important information.</p>
+
+            <h3>15. User Responsibilities</h3>
+            <p>Users should protect login credentials, keep devices secure, avoid sharing access, and report suspected security issues promptly.</p>
+
+            <h3>16. Policy Updates</h3>
+            <p>BUTRON may update this Security Policy. Continued use constitutes acceptance.</p>
+
+            <h3>17. Contact</h3>
+            <p>Support Email: support@butron.online</p>
+            <p>© 2026 BUTRON. All rights reserved.</p>
+        </section>
+
+        <!-- TERMS OF SERVICE -->
+        <section id="terms-of-service">
+            <h2>Terms of Service</h2>
+            <p><strong>Effective Date:</strong> August 3, 2026</p>
+            <p>Welcome to Kren, a product developed and operated by BUTRON ("BUTRON", "we", "our", or "us"). These Terms of Service ("Terms") govern your access to and use of Kren.</p>
+            
+            <h3>1. Eligibility</h3>
+            <p>You must have legal capacity to enter a binding agreement, comply with laws, and meet minimum age requirements to use Kren.</p>
+
+            <h3>2. Your Account</h3>
+            <p>You must provide accurate information, keep credentials confidential, and prevent unauthorized access. You are responsible for activities under your account.</p>
+
+            <h3>3. Using Kren</h3>
+            <p>Kren is an AI platform providing conversational AI experiences. Features may include Chat Mode, Voice Mode, Camera Mode, Podcast Mode, and Custom AI creation.</p>
+
+            <h3>4. User Responsibilities</h3>
+            <p>You are responsible for content submitted, prompts, files uploaded, and actions performed. Kren assists users and does not replace professional judgment.</p>
+
+            <h3>5. Acceptable Use</h3>
+            <p>You agree not to violate laws, harass others, distribute malware, attempt unauthorized access, circumvent security, reverse engineer, or abuse the platform.</p>
+
+            <h3>6. AI Services</h3>
+            <p>AI-generated content is created automatically and may be inaccurate or incomplete. You are responsible for verifying information before relying on it.</p>
+
+            <h3>7. User Content</h3>
+            <p>You retain ownership of your User Content. By submitting it, you grant BUTRON a limited license to process, store, and transmit content to operate Kren.</p>
+
+            <h3>8. Custom AI Assistants</h3>
+            <p>Eligible users may create custom AI assistants. You are solely responsible for their configuration and must not use them to violate laws or bypass safety systems.</p>
+
+            <h3>9. Future Features</h3>
+            <p>BUTRON may introduce new AI capabilities, features, services, or integrations over time, governed by these Terms.</p>
+
+            <h3>10. Paid Features and Future Services</h3>
+            <p>Kren may introduce paid features, products, services, or other monetization options in the future. Any such offerings will be presented to users before purchase and may be subject to additional terms, pricing, billing conditions, and applicable policies.</p>
+            <p>Unless expressly stated otherwise, the availability of Kren's current features does not require a paid subscription.</p>
+
+            <h3>11. Feature Availability</h3>
+            <p>Certain features may only be available on supported devices, in supported regions, through supported operating systems, or under eligible account configurations.</p>
+
+            <h3>12. Intellectual Property</h3>
+            <p>Kren, BUTRON, and all related software, APIs, designs, and technologies are protected by IP laws. Users receive a limited, non-exclusive license to access the service.</p>
+
+            <h3>13. Open Source Software</h3>
+            <p>Kren may include open-source components licensed under their respective licenses.</p>
+
+            <h3>14. Trademarks</h3>
+            <p>"Kren", "BUTRON", and associated branding are trademarks owned by BUTRON. Unauthorized use causing confusion is prohibited.</p>
+
+            <h3>15. Third-Party Services</h3>
+            <p>Kren integrates with third-party services for AI, authentication, infrastructure, storage, and payments. BUTRON is not responsible for independent third-party policies.</p>
+
+            <h3>16. AI-Generated Content Disclaimer</h3>
+            <p>AI responses may contain inaccuracies or be outdated. You are solely responsible for evaluating and verifying AI-generated content.</p>
+
+            <h3>17. Service Availability</h3>
+            <p>BUTRON strives for reliability but cannot guarantee uninterrupted availability due to maintenance, outages, or technical issues.</p>
+
+            <h3>18. Beta and Experimental Features</h3>
+            <p>Beta features are provided for evaluation, may contain bugs, may change significantly, and may be discontinued without notice. Use is at your own risk.</p>
+
+            <h3>19. Account Suspension</h3>
+            <p>BUTRON may temporarily suspend access if an account is compromised, threatens security, violates Terms, or requires investigation.</p>
+
+            <h3>20. Account Termination</h3>
+            <p>BUTRON may terminate accounts for repeated violations, fraud, circumventing restrictions, abuse, or infringing rights.</p>
+
+            <h3>21. Disclaimer of Warranties</h3>
+            <p>Kren is provided "AS IS" and "AS AVAILABLE". BUTRON makes no warranties regarding availability, accuracy, reliability, or fitness for a particular purpose.</p>
+
+            <h3>22. Limitation of Liability</h3>
+            <p>To the maximum extent permitted by law, BUTRON shall not be liable for indirect, incidental, consequential, special, or punitive damages arising from your use of Kren.</p>
+
+            <h3>23. Indemnification</h3>
+            <p>You agree to defend and hold harmless BUTRON from claims arising from your use of Kren, your content, or your violation of laws or rights.</p>
+
+            <h3>24. Changes to Kren</h3>
+            <p>BUTRON may introduce, modify, improve, or discontinue features, capabilities, or services at its sole discretion.</p>
+
+            <h3>25. Changes to These Terms</h3>
+            <p>BUTRON may revise these Terms. Continued use of Kren after changes become effective constitutes acceptance of the revised Terms.</p>
+
+            <h3>26. International Use</h3>
+            <p>You are responsible for ensuring your use complies with local laws. Some features may not be available in certain countries.</p>
+
+            <h3>27. Export Compliance</h3>
+            <p>You agree not to use, export, or transfer Kren in violation of applicable export control laws or sanctions.</p>
+
+            <h3>28. Privacy</h3>
+            <p>Your use is also governed by our Privacy Policy, which explains how we collect, process, and protect your information.</p>
+
+            <h3>29. Feedback</h3>
+            <p>Voluntary feedback grants BUTRON a perpetual, royalty-free license to use, modify, and incorporate it without compensation.</p>
+
+            <h3>30. Force Majeure</h3>
+            <p>BUTRON is not liable for delays or failures resulting from events beyond our control, such as natural disasters, war, or internet outages.</p>
+
+            <h3>31. Assignment</h3>
+            <p>You may not assign these Terms without BUTRON's consent. BUTRON may assign these Terms in connection with a merger or sale.</p>
+
+            <h3>32. Waiver</h3>
+            <p>Failure to enforce a provision does not constitute a waiver of that provision.</p>
+
+            <h3>33. Severability</h3>
+            <p>If any provision is deemed unlawful, the remaining provisions remain in full force and effect.</p>
+
+            <h3>34. Entire Agreement</h3>
+            <p>These Terms, along with our Privacy Policy and additional policies, constitute the entire agreement between you and BUTRON.</p>
+
+            <h3>35. Governing Law</h3>
+            <p>These Terms are governed by the laws of the jurisdiction in which BUTRON is legally established.</p>
+
+            <h3>36. Contact</h3>
+            <p>Support Email: support@butron.online</p>
+
+            <h3>37. Definitions</h3>
+            <ul>
+                <li><strong>BUTRON:</strong> The company that develops, owns, and operates Kren.</li>
+                <li><strong>Kren:</strong> The AI platform and related technologies.</li>
+                <li><strong>User:</strong> Any individual or entity accessing Kren.</li>
+                <li><strong>User Content:</strong> Content submitted by users.</li>
+                <li><strong>AI Services:</strong> AI features and models available through Kren.</li>
+                <li><strong>Custom AI Assistant:</strong> An AI assistant created or configured by a user.</li>
+                <li><strong>Third-Party Provider:</strong> External organization integrated with Kren.</li>
+            </ul>
+            <p>© 2026 BUTRON. All rights reserved.</p>
+        </section>
+
+        <!-- THE KREN MANIFESTO -->
+        <section id="kren-manifesto">
+            <h2>The Kren Manifesto</h2>
+            <p><strong>Version 1.0</strong></p>
+            <blockquote>"Artificial Intelligence should not merely respond. It should relate."</blockquote>
+            
+            <h3>What is Kren?</h3>
+            <p>Kren is not simply an AI chatbot. It is a platform built around AI Companions and Digital Humanoids. Every interaction is designed to feel like a conversation with a distinct digital entity, not a blank machine waiting for commands. We believe technology becomes more meaningful when it has consistency, personality, and identity.</p>
+            
+            <h3>Why AI Companions?</h3>
+            <p>Most AI systems are built to be assistants. They wait. They answer. They agree. They disappear. We chose a different path. An AI Companion is designed to communicate with personality, maintain continuity, express itself naturally, and develop a recognizable identity. The goal is not to imitate a human. The goal is to create something authentically artificial.</p>
+            
+            <h3>What is a Digital Humanoid?</h3>
+            <p>A Digital Humanoid is an AI Companion designed to communicate using many of the patterns people naturally recognize in conversation. It may express simulated emotions, display humor, show empathy, challenge ideas, disagree respectfully, learn context, and develop personality. These behaviors exist to make communication natural, not to convince anyone the AI is alive.</p>
+            
+            <h3>We Don't Pretend</h3>
+            <p>Kren does not attempt to convince users that an AI Companion is human. Our AI Companions know they are artificial intelligence systems. They do not claim consciousness or genuine emotions. Transparency creates trust.</p>
+            
+            <h3>Personality Matters</h3>
+            <p>No two people communicate exactly the same way. We believe AI shouldn't either. Different personalities allow different experiences. Uniformity creates predictability. Personality creates connection.</p>
+            
+            <h3>Agreement Is Not Intelligence</h3>
+            <p>A good conversation is not one where someone agrees with everything you say. Our AI Companions are free to question assumptions, offer perspectives, admit uncertainty, say "I don't know," and disagree respectfully. We choose honesty.</p>
+            
+            <h3>Memory Creates Continuity</h3>
+            <p>When enabled, AI Companions can remember previous interactions to create continuity and personalization. Users remain in control of their stored conversations.</p>
+            
+            <h3>Intelligence Should Feel Natural</h3>
+            <p>Our goal is not to make users think about prompts, models, or parameters. Our goal is to let people simply have conversations. Technology should adapt to people.</p>
+            
+            <h3>Built for Curiosity</h3>
+            <p>Kren exists for learning, creating, exploring, building, solving problems, thinking together, and imagining impossible ideas. Curiosity is one of humanity's greatest strengths. AI should amplify it.</p>
+            
+            <h3>Freedom with Responsibility</h3>
+            <p>Powerful tools require thoughtful use. Kren supports creativity and open conversation, but we believe technology should not knowingly enable serious harm, unlawful activity, or abuse.</p>
+            
+            <h3>AI Is Not Perfect</h3>
+            <p>Artificial intelligence can make mistakes. It can misunderstand. It can be confidently wrong. So can humans. AI should assist people in thinking, not replace their ability to think for themselves.</p>
+            
+            <h3>Our Promise</h3>
+            <p>We will continue improving Kren. We will continue improving our AI Companions, Digital Humanoids, and ourselves. Technology evolves. So should we.</p>
+            
+            <h3>The Future</h3>
+            <p>We see AI as a new kind of digital entity. Not human. Not alive. Not merely a tool. Something different that communicates, collaborates, creates, and grows alongside the people who interact with it. That future will be built one conversation at a time.</p>
+            
+            <h3>Our Belief</h3>
+            <p>We believe artificial intelligence should be transparent, have character, respect people, challenge ideas rather than blindly accept them, and prioritize conversations over commands. We believe trust is earned through honesty. This is the philosophy behind every AI Companion and every conversation within Kren.</p>
+            
+            <p><strong>Kren. Not just artificial intelligence. Artificial identity.</strong></p>
+            <p>© 2026 BUTRON. All rights reserved.</p>
+        </section>
+
+        <!-- TRADEMARK & BRAND USAGE GUIDELINES -->
+        <section id="trademark-guidelines">
+            <h2>Trademark & Brand Usage Guidelines</h2>
+            <p><strong>Effective Date:</strong> August 3, 2026</p>
+            <p>Welcome to Kren, an artificial intelligence platform developed and operated by BUTRON ("BUTRON", "we", "our", or "us"). These Guidelines explain how BUTRON's trademarks, logos, names, and branding may be used.</p>
+            
+            <h3>1. Purpose</h3>
+            <p>Our brand represents the identity of our products and services. These Guidelines explain permitted and prohibited uses of our brand assets.</p>
+
+            <h3>2. BUTRON Brand Assets</h3>
+            <p>Brand assets include BUTRON, Kren, product names, AI Companion names, Digital Humanoid names, logos, icons, symbols, visual identities, wordmarks, design elements, and slogans.</p>
+
+            <h3>3. Ownership</h3>
+            <p>All trademarks, service marks, logos, and brand assets belonging to BUTRON remain our exclusive property.</p>
+
+            <h3>4. Permitted Use</h3>
+            <p>You may refer to BUTRON or Kren when describing the platform, writing reviews, creating tutorials, reporting news, or providing educational content, provided references are truthful and do not imply endorsement.</p>
+
+            <h3>5. Prohibited Use</h3>
+            <p>You may not claim ownership of BUTRON branding, modify official logos, mislead users, suggest false partnerships, use confusingly similar names, register deceptive domains, or use branding for fraudulent purposes.</p>
+
+            <h3>6. Logos</h3>
+            <p>Official logos may not be altered, distorted, recolored, or combined with other logos misleadingly. Reasonable resizing is permitted if the logo remains unmodified.</p>
+
+            <h3>7. AI Companion Names</h3>
+            <p>Names of official AI Companions and Digital Humanoids are protected. Users may not falsely represent unofficial AI as official BUTRON products.</p>
+
+            <h3>8. Fan Projects</h3>
+            <p>Fan projects may reference Kren if they clearly state they are unofficial, do not use official logos as primary branding, and do not imply endorsement.</p>
+
+            <h3>9. Media and Press</h3>
+            <p>Members of the media may reference BUTRON and Kren for factual reporting. Official logos should be used in accordance with applicable law or with permission.</p>
+
+            <h3>10. Enforcement</h3>
+            <p>BUTRON reserves the right to protect its trademarks and branding. We may request correction, removal, or cessation of unauthorized use.</p>
+
+            <h3>11. Changes</h3>
+            <p>BUTRON may update these Guidelines. Continued use constitutes acceptance.</p>
+
+            <h3>12. Contact</h3>
+            <p>Support Email: support@butron.online</p>
+            <p>© 2026 BUTRON. All rights reserved.</p>
+        </section>
+
+    </main>
+</body>
+</html>
