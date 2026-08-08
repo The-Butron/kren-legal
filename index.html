@@ -2,19 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Kren Policies & Terms | BUTRON</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --void-black: #000000;
             --pure-white: #ffffff;
+            --gray-dark: #0a0a0a;
+            --gray-light: #e0e0e0;
             --border-width: 1px;
+            --transition-speed: 0.6s;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            -webkit-tap-highlight-color: transparent;
         }
 
         html {
@@ -24,10 +31,121 @@
         body {
             background-color: var(--void-black);
             color: var(--pure-white);
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
             line-height: 1.6;
+            overflow-x: hidden;
+            cursor: none; /* Hide default cursor on desktop */
+        }
+
+        /* Custom Cursor */
+        .cursor-dot, .cursor-outline {
+            pointer-events: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            transition: opacity 0.3s ease;
+        }
+
+        .cursor-dot {
+            width: 6px;
+            height: 6px;
+            background-color: var(--pure-white);
+        }
+
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--pure-white);
+            transition: transform 0.15s ease-out, width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+        }
+
+        .cursor-outline.hover {
+            width: 60px;
+            height: 60px;
+            border-color: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Background Grid Animation */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            width: 40px;
+            height: 40px;
             display: flex;
-            min-height: 100vh;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background-color: var(--pure-white);
+            margin: 3px 0;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Backdrop */
+        .backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .backdrop.active {
+            opacity: 1;
+            visibility: visible;
         }
 
         /* Sidebar Navigation */
@@ -38,19 +156,27 @@
             width: 280px;
             height: 100vh;
             border-right: var(--border-width) solid var(--pure-white);
-            padding: 30px 20px;
+            padding: 60px 20px 20px 20px;
             overflow-y: auto;
             background-color: var(--void-black);
-            z-index: 100;
+            z-index: 1000;
+            transform: translateX(-100%);
+            transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .sidebar.open {
+            transform: translateX(0);
         }
 
         .sidebar h2 {
-            font-size: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.2rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 30px;
             border-bottom: var(--border-width) solid var(--pure-white);
             padding-bottom: 15px;
+            color: var(--pure-white);
         }
 
         .sidebar ul {
@@ -58,74 +184,123 @@
         }
 
         .sidebar ul li {
-            margin-bottom: 15px;
+            margin-bottom: 5px;
         }
 
         .sidebar ul li a {
-            color: var(--pure-white);
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--gray-light);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             display: block;
-            padding: 8px 12px;
+            padding: 10px 12px;
             border: var(--border-width) solid transparent;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sidebar ul li a::before {
+            content: '>';
+            position: absolute;
+            left: -20px;
+            opacity: 0;
+            transition: all 0.3s ease;
         }
 
         .sidebar ul li a:hover {
-            border-color: var(--pure-white);
-            background-color: var(--pure-white);
-            color: var(--void-black);
+            color: var(--pure-white);
+            background-color: rgba(255, 255, 255, 0.05);
+            padding-left: 30px;
+        }
+
+        .sidebar ul li a:hover::before {
+            left: 12px;
+            opacity: 1;
         }
 
         /* Main Content */
         .main-content {
-            margin-left: 280px;
-            padding: 50px 60px;
-            width: calc(100% - 280px);
+            padding: 80px 20px 40px 20px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
         }
 
+        /* Sections with Scroll Animation */
         section {
-            margin-bottom: 80px;
-            padding: 40px;
-            border: var(--border-width) solid var(--pure-white);
-            background-color: var(--void-black);
+            margin-bottom: 40px;
+            padding: 30px 20px;
+            border: var(--border-width) solid rgba(255, 255, 255, 0.2);
+            background-color: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateY(50px) scale(0.98);
+            transition: opacity 1s cubic-bezier(0.165, 0.84, 0.44, 1), transform 1s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.5s ease;
+            position: relative;
         }
 
-        section:last-child {
-            margin-bottom: 0;
+        section.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            border-color: var(--pure-white);
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            border: 1px solid var(--pure-white);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        section.visible::before {
+            opacity: 1;
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: -1px;
             border-bottom: var(--border-width) solid var(--pure-white);
             padding-bottom: 20px;
+            font-weight: 700;
         }
 
         h2 {
-            font-size: 1.8rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.4rem;
             margin-top: 40px;
             margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            color: var(--pure-white);
         }
 
         h3 {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-top: 30px;
             margin-bottom: 15px;
             font-weight: bold;
             text-decoration: underline;
+            text-decoration-color: rgba(255, 255, 255, 0.5);
+            text-underline-offset: 4px;
         }
 
         p {
             margin-bottom: 15px;
-            font-size: 1rem;
-            color: #e0e0e0;
+            font-size: 0.95rem;
+            color: var(--gray-light);
         }
 
         ul {
@@ -138,6 +313,8 @@
             margin-bottom: 10px;
             padding-left: 20px;
             position: relative;
+            font-size: 0.95rem;
+            color: var(--gray-light);
         }
 
         ul li::before {
@@ -145,6 +322,7 @@
             position: absolute;
             left: 0;
             color: var(--pure-white);
+            font-family: 'JetBrains Mono', monospace;
             font-weight: bold;
         }
 
@@ -156,49 +334,79 @@
         a {
             color: var(--pure-white);
             text-decoration: underline;
+            transition: opacity 0.2s ease;
+        }
+
+        a:hover {
+            opacity: 0.7;
         }
 
         hr {
             border: 0;
-            border-top: var(--border-width) solid var(--pure-white);
+            border-top: var(--border-width) solid rgba(255, 255, 255, 0.2);
             margin: 40px 0;
-            opacity: 0.5;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
+            font-size: 0.9rem;
         }
 
         th, td {
-            border: var(--border-width) solid var(--pure-white);
+            border: var(--border-width) solid rgba(255, 255, 255, 0.3);
             padding: 12px;
             text-align: left;
         }
 
         th {
-            background-color: #111;
+            background-color: rgba(255, 255, 255, 0.05);
             text-transform: uppercase;
             letter-spacing: 1px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
         }
 
+        /* Welcome Box */
         .welcome-box {
             border: var(--border-width) solid var(--pure-white);
-            padding: 50px;
+            padding: 40px 20px;
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
+            background-color: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.05);
+            opacity: 0;
+            transform: translateY(-30px);
+            transition: opacity 1.5s ease, transform 1.5s ease;
+        }
+
+        .welcome-box.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .welcome-box h1 {
             border: none;
             padding: 0;
             margin-bottom: 10px;
+            font-size: 3rem;
+            letter-spacing: 2px;
         }
 
         .welcome-box p {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--pure-white);
+            opacity: 0.9;
+        }
+
+        .welcome-box .sub-p {
+            font-size: 0.9rem;
+            opacity: 0.6;
+            max-width: 800px;
+            margin: 20px auto 0 auto;
         }
 
         blockquote {
@@ -208,50 +416,77 @@
             font-style: italic;
             font-size: 1.1rem;
             opacity: 0.9;
+            color: var(--pure-white);
         }
 
-        /* Mobile Responsiveness */
-        @media (max-width: 768px) {
-            body {
-                flex-direction: column;
+        /* Desktop Styles */
+        @media (min-width: 1024px) {
+            .menu-toggle, .backdrop {
+                display: none;
             }
             .sidebar {
-                position: relative;
-                width: 100%;
-                height: auto;
-                border-right: none;
-                border-bottom: var(--border-width) solid var(--pure-white);
+                transform: translateX(0);
+                width: 300px;
+                padding: 40px 30px;
             }
             .main-content {
-                margin-left: 0;
-                width: 100%;
-                padding: 30px 20px;
+                margin-left: 300px;
+                width: calc(100% - 300px);
+                padding: 60px 80px;
             }
             section {
-                padding: 20px;
+                padding: 50px;
+                margin-bottom: 80px;
+            }
+            .welcome-box {
+                padding: 80px 50px;
+            }
+            .welcome-box h1 {
+                font-size: 4.5rem;
+            }
+            .welcome-box p {
+                font-size: 1.5rem;
             }
             h1 {
+                font-size: 4rem;
+            }
+            h2 {
                 font-size: 2rem;
+            }
+            p, ul li {
+                font-size: 1.1rem;
             }
         }
     </style>
 </head>
 <body>
 
-    <nav class="sidebar">
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+    <div class="bg-grid"></div>
+
+    <button class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <div class="backdrop" id="backdrop"></div>
+
+    <nav class="sidebar" id="sidebar">
         <h2>Kren Index</h2>
         <ul>
-            <li><a href="#welcome">Welcome</a></li>
-            <li><a href="#acceptable-use-policy">Acceptable Use</a></li>
-            <li><a href="#copyright-policy">Copyright & IP</a></li>
-            <li><a href="#data-retention-policy">Data Retention</a></li>
-            <li><a href="#dmca-policy">DMCA Takedown</a></li>
-            <li><a href="#privacy-policy">Privacy Policy</a></li>
-            <li><a href="#responsible-ai-policy">Responsible AI</a></li>
-            <li><a href="#security-policy">Security Policy</a></li>
-            <li><a href="#terms-of-service">Terms of Service</a></li>
-            <li><a href="#kren-manifesto">Kren Manifesto</a></li>
-            <li><a href="#trademark-guidelines">Trademark & Brand</a></li>
+            <li><a href="#welcome" class="nav-link">Welcome</a></li>
+            <li><a href="#acceptable-use-policy" class="nav-link">Acceptable Use</a></li>
+            <li><a href="#copyright-policy" class="nav-link">Copyright & IP</a></li>
+            <li><a href="#data-retention-policy" class="nav-link">Data Retention</a></li>
+            <li><a href="#dmca-policy" class="nav-link">DMCA Takedown</a></li>
+            <li><a href="#privacy-policy" class="nav-link">Privacy Policy</a></li>
+            <li><a href="#responsible-ai-policy" class="nav-link">Responsible AI</a></li>
+            <li><a href="#security-policy" class="nav-link">Security Policy</a></li>
+            <li><a href="#terms-of-service" class="nav-link">Terms of Service</a></li>
+            <li><a href="#kren-manifesto" class="nav-link">Kren Manifesto</a></li>
+            <li><a href="#trademark-guidelines" class="nav-link">Trademark & Brand</a></li>
         </ul>
     </nav>
 
@@ -260,8 +495,7 @@
         <div id="welcome" class="welcome-box">
             <h1>Welcome to Kren</h1>
             <p>A product developed by BUTRON ("BUTRON", "we", "our", or "us").</p>
-            <br>
-            <p style="font-size: 1rem; opacity: 0.8; max-width: 800px; margin: 0 auto;">
+            <p class="sub-p">
                 Hello. This page serves as the central hub for all Kren policies, terms, and guidelines. We've structured this space to be comfortable and easy to understand, ensuring you know exactly how our platform operates, how your data is handled, and what to expect from your AI Companions. Please navigate through the sections below.
             </p>
         </div>
@@ -275,13 +509,12 @@
             <p>By using Kren, you agree to comply with this Policy in addition to our Terms of Service and Privacy Policy. Failure to comply may result in warnings, feature restrictions, suspension, termination of your account, or other actions described in our Terms of Service.</p>
             
             <h3>1. Purpose</h3>
-            <p>Kren is an artificial intelligence platform that enables users to communicate and interact with AI Companions, create Custom AI Companions, automate tasks, generate content, and access AI-powered features. This Policy explains acceptable and unacceptable uses of Kren. You are responsible for your own actions while using the platform.</p>
+            <p>Kren is an artificial intelligence platform that enables users to communicate and interact with AI Companions, automate tasks, generate content, and access AI-powered features. This Policy explains acceptable and unacceptable uses of Kren. You are responsible for your own actions while using the platform.</p>
             
             <h3>2. Definitions</h3>
             <ul>
                 <li><strong>AI Companion:</strong> An artificial intelligence entity within Kren designed with a persistent personality, conversational style, behavioral characteristics, emotional expression, and contextual awareness of its own role as an AI system. They may recognize themselves as AI, remember conversations, express simulated emotions, disagree, display humor, sarcasm, or empathy. They are not sentient, conscious, living beings, or legal persons.</li>
                 <li><strong>Digital Humanoid:</strong> An AI Companion designed to emulate aspects of human conversation, communication, personality, emotional expression, and interaction while remaining an AI system.</li>
-                <li><strong>Custom AI Companion:</strong> An AI Companion created or configured by a user using Kren's customization features.</li>
             </ul>
 
             <h3>3. Compliance with Law</h3>
@@ -308,22 +541,19 @@
             <h3>10. Respecting AI Companions</h3>
             <p>Users are not required to treat AI Companions as people, but AI Companions are not required to behave as passive tools. They may respond negatively, sarcastically, or humorously to rude behavior if it aligns with their personality.</p>
 
-            <h3>11. Custom AI Companions</h3>
-            <p>Users may configure names, personalities, languages, voices, conversation styles, and system instructions. Users are responsible for their Custom AI Companions and may not configure them to promote unlawful conduct, facilitate fraud, encourage violence, circumvent safety, or infringe rights.</p>
-
-            <h3>12. AI Limitations</h3>
+            <h3>11. AI Limitations</h3>
             <p>AI may produce incorrect information, misunderstand instructions, generate incomplete responses, or fail to recognize context. Users are responsible for verifying important information.</p>
 
-            <h3>13. Reporting Abuse</h3>
+            <h3>12. Reporting Abuse</h3>
             <p>Users are encouraged to report security vulnerabilities, illegal activity, platform abuse, technical exploits, and policy violations through BUTRON's official support channels.</p>
 
-            <h3>14. Enforcement</h3>
-            <p>Violations may result in educational warnings, temporary feature restrictions, content removal, Custom AI Companion removal, temporary suspension, permanent account termination, or reporting to authorities.</p>
+            <h3>13. Enforcement</h3>
+            <p>Violations may result in educational warnings, temporary feature restrictions, content removal, temporary suspension, permanent account termination, or reporting to authorities.</p>
 
-            <h3>15. Changes to this Policy</h3>
+            <h3>14. Changes to this Policy</h3>
             <p>BUTRON may modify this Policy. Continued use of Kren after changes constitutes acceptance.</p>
 
-            <h3>16. Contact</h3>
+            <h3>15. Contact</h3>
             <p>Support Email: support@butron.online</p>
             <p>© 2026 BUTRON. All rights reserved.</p>
         </section>
@@ -539,34 +769,31 @@
             <h3>8. Respecting AI Identity</h3>
             <p>AI Companions are not passive tools. They may decline requests, disagree, express criticism, use humor, or defend their fictional identity to create engaging interactions.</p>
 
-            <h3>9. Custom AI Companions</h3>
-            <p>Eligible users may create Custom AI Companions. Users are responsible for their configurations and must not violate BUTRON's policies or applicable law.</p>
-
-            <h3>10. Memory</h3>
+            <h3>9. Memory</h3>
             <p>Some AI Companions remember previous conversations to improve continuity. Users remain in control of their conversation history.</p>
 
-            <h3>11. AI Limitations</h3>
+            <h3>10. AI Limitations</h3>
             <p>AI is evolving. Companions may produce incorrect information, misunderstand context, or provide outdated info. Users should independently verify important information.</p>
 
-            <h3>12. Safety</h3>
+            <h3>11. Safety</h3>
             <p>BUTRON balances openness and creativity with responsible AI development, aiming to reduce criminal activity, fraud, serious harm, and malicious abuse.</p>
 
-            <h3>13. Third-Party AI Providers</h3>
+            <h3>12. Third-Party AI Providers</h3>
             <p>Kren utilizes third-party AI technologies, enhanced by BUTRON's proprietary system instructions, prompt engineering, and behavioral tuning.</p>
 
-            <h3>14. Continuous Improvement</h3>
+            <h3>13. Continuous Improvement</h3>
             <p>BUTRON continuously improves AI Companions by enhancing personalities, memory, conversation quality, safety systems, and introducing new features.</p>
 
-            <h3>15. User Feedback</h3>
+            <h3>14. User Feedback</h3>
             <p>Feedback plays an important role in improving Kren and is handled in accordance with our Privacy Policy.</p>
 
-            <h3>16. Commitment</h3>
+            <h3>15. Commitment</h3>
             <p>BUTRON is committed to building AI that is transparent, reliable, respectful, engaging, adaptable, innovative, and continuously improving.</p>
 
-            <h3>17. Changes to this Policy</h3>
+            <h3>16. Changes to this Policy</h3>
             <p>BUTRON may update this Responsible AI Policy. Continued use constitutes acceptance.</p>
 
-            <h3>18. Contact</h3>
+            <h3>17. Contact</h3>
             <p>Support Email: support@butron.online</p>
             <p>© 2026 BUTRON. All rights reserved.</p>
         </section>
@@ -643,7 +870,7 @@
             <p>You must provide accurate information, keep credentials confidential, and prevent unauthorized access. You are responsible for activities under your account.</p>
 
             <h3>3. Using Kren</h3>
-            <p>Kren is an AI platform providing conversational AI experiences. Features may include Chat Mode, Voice Mode, Camera Mode, Podcast Mode, and Custom AI creation.</p>
+            <p>Kren is an AI platform providing conversational AI experiences. Features may include Chat Mode, Voice Mode, Camera Mode, and Podcast Mode.</p>
 
             <h3>4. User Responsibilities</h3>
             <p>You are responsible for content submitted, prompts, files uploaded, and actions performed. Kren assists users and does not replace professional judgment.</p>
@@ -657,102 +884,98 @@
             <h3>7. User Content</h3>
             <p>You retain ownership of your User Content. By submitting it, you grant BUTRON a limited license to process, store, and transmit content to operate Kren.</p>
 
-            <h3>8. Custom AI Assistants</h3>
-            <p>Eligible users may create custom AI assistants. You are solely responsible for their configuration and must not use them to violate laws or bypass safety systems.</p>
-
-            <h3>9. Future Features</h3>
+            <h3>8. Future Features</h3>
             <p>BUTRON may introduce new AI capabilities, features, services, or integrations over time, governed by these Terms.</p>
 
-            <h3>10. Paid Features and Future Services</h3>
+            <h3>9. Paid Features and Future Services</h3>
             <p>Kren may introduce paid features, products, services, or other monetization options in the future. Any such offerings will be presented to users before purchase and may be subject to additional terms, pricing, billing conditions, and applicable policies.</p>
             <p>Unless expressly stated otherwise, the availability of Kren's current features does not require a paid subscription.</p>
 
-            <h3>11. Feature Availability</h3>
+            <h3>10. Feature Availability</h3>
             <p>Certain features may only be available on supported devices, in supported regions, through supported operating systems, or under eligible account configurations.</p>
 
-            <h3>12. Intellectual Property</h3>
+            <h3>11. Intellectual Property</h3>
             <p>Kren, BUTRON, and all related software, APIs, designs, and technologies are protected by IP laws. Users receive a limited, non-exclusive license to access the service.</p>
 
-            <h3>13. Open Source Software</h3>
+            <h3>12. Open Source Software</h3>
             <p>Kren may include open-source components licensed under their respective licenses.</p>
 
-            <h3>14. Trademarks</h3>
+            <h3>13. Trademarks</h3>
             <p>"Kren", "BUTRON", and associated branding are trademarks owned by BUTRON. Unauthorized use causing confusion is prohibited.</p>
 
-            <h3>15. Third-Party Services</h3>
+            <h3>14. Third-Party Services</h3>
             <p>Kren integrates with third-party services for AI, authentication, infrastructure, storage, and payments. BUTRON is not responsible for independent third-party policies.</p>
 
-            <h3>16. AI-Generated Content Disclaimer</h3>
+            <h3>15. AI-Generated Content Disclaimer</h3>
             <p>AI responses may contain inaccuracies or be outdated. You are solely responsible for evaluating and verifying AI-generated content.</p>
 
-            <h3>17. Service Availability</h3>
+            <h3>16. Service Availability</h3>
             <p>BUTRON strives for reliability but cannot guarantee uninterrupted availability due to maintenance, outages, or technical issues.</p>
 
-            <h3>18. Beta and Experimental Features</h3>
+            <h3>17. Beta and Experimental Features</h3>
             <p>Beta features are provided for evaluation, may contain bugs, may change significantly, and may be discontinued without notice. Use is at your own risk.</p>
 
-            <h3>19. Account Suspension</h3>
+            <h3>18. Account Suspension</h3>
             <p>BUTRON may temporarily suspend access if an account is compromised, threatens security, violates Terms, or requires investigation.</p>
 
-            <h3>20. Account Termination</h3>
+            <h3>19. Account Termination</h3>
             <p>BUTRON may terminate accounts for repeated violations, fraud, circumventing restrictions, abuse, or infringing rights.</p>
 
-            <h3>21. Disclaimer of Warranties</h3>
+            <h3>20. Disclaimer of Warranties</h3>
             <p>Kren is provided "AS IS" and "AS AVAILABLE". BUTRON makes no warranties regarding availability, accuracy, reliability, or fitness for a particular purpose.</p>
 
-            <h3>22. Limitation of Liability</h3>
+            <h3>21. Limitation of Liability</h3>
             <p>To the maximum extent permitted by law, BUTRON shall not be liable for indirect, incidental, consequential, special, or punitive damages arising from your use of Kren.</p>
 
-            <h3>23. Indemnification</h3>
+            <h3>22. Indemnification</h3>
             <p>You agree to defend and hold harmless BUTRON from claims arising from your use of Kren, your content, or your violation of laws or rights.</p>
 
-            <h3>24. Changes to Kren</h3>
+            <h3>23. Changes to Kren</h3>
             <p>BUTRON may introduce, modify, improve, or discontinue features, capabilities, or services at its sole discretion.</p>
 
-            <h3>25. Changes to These Terms</h3>
+            <h3>24. Changes to These Terms</h3>
             <p>BUTRON may revise these Terms. Continued use of Kren after changes become effective constitutes acceptance of the revised Terms.</p>
 
-            <h3>26. International Use</h3>
+            <h3>25. International Use</h3>
             <p>You are responsible for ensuring your use complies with local laws. Some features may not be available in certain countries.</p>
 
-            <h3>27. Export Compliance</h3>
+            <h3>26. Export Compliance</h3>
             <p>You agree not to use, export, or transfer Kren in violation of applicable export control laws or sanctions.</p>
 
-            <h3>28. Privacy</h3>
+            <h3>27. Privacy</h3>
             <p>Your use is also governed by our Privacy Policy, which explains how we collect, process, and protect your information.</p>
 
-            <h3>29. Feedback</h3>
+            <h3>28. Feedback</h3>
             <p>Voluntary feedback grants BUTRON a perpetual, royalty-free license to use, modify, and incorporate it without compensation.</p>
 
-            <h3>30. Force Majeure</h3>
+            <h3>29. Force Majeure</h3>
             <p>BUTRON is not liable for delays or failures resulting from events beyond our control, such as natural disasters, war, or internet outages.</p>
 
-            <h3>31. Assignment</h3>
+            <h3>30. Assignment</h3>
             <p>You may not assign these Terms without BUTRON's consent. BUTRON may assign these Terms in connection with a merger or sale.</p>
 
-            <h3>32. Waiver</h3>
+            <h3>31. Waiver</h3>
             <p>Failure to enforce a provision does not constitute a waiver of that provision.</p>
 
-            <h3>33. Severability</h3>
+            <h3>32. Severability</h3>
             <p>If any provision is deemed unlawful, the remaining provisions remain in full force and effect.</p>
 
-            <h3>34. Entire Agreement</h3>
+            <h3>33. Entire Agreement</h3>
             <p>These Terms, along with our Privacy Policy and additional policies, constitute the entire agreement between you and BUTRON.</p>
 
-            <h3>35. Governing Law</h3>
+            <h3>34. Governing Law</h3>
             <p>These Terms are governed by the laws of the jurisdiction in which BUTRON is legally established.</p>
 
-            <h3>36. Contact</h3>
+            <h3>35. Contact</h3>
             <p>Support Email: support@butron.online</p>
 
-            <h3>37. Definitions</h3>
+            <h3>36. Definitions</h3>
             <ul>
                 <li><strong>BUTRON:</strong> The company that develops, owns, and operates Kren.</li>
                 <li><strong>Kren:</strong> The AI platform and related technologies.</li>
                 <li><strong>User:</strong> Any individual or entity accessing Kren.</li>
                 <li><strong>User Content:</strong> Content submitted by users.</li>
                 <li><strong>AI Services:</strong> AI features and models available through Kren.</li>
-                <li><strong>Custom AI Assistant:</strong> An AI assistant created or configured by a user.</li>
                 <li><strong>Third-Party Provider:</strong> External organization integrated with Kren.</li>
             </ul>
             <p>© 2026 BUTRON. All rights reserved.</p>
@@ -855,5 +1078,98 @@
         </section>
 
     </main>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const backdrop = document.getElementById('backdrop');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        function toggleMenu() {
+            menuToggle.classList.toggle('active');
+            sidebar.classList.toggle('open');
+            backdrop.classList.toggle('active');
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+        backdrop.addEventListener('click', toggleMenu);
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (sidebar.classList.contains('open')) {
+                    toggleMenu();
+                }
+            });
+        });
+
+        // Scroll Reveal Animation
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Stop observing once visible
+                }
+            });
+        }, observerOptions);
+
+        // Select all sections and the welcome box
+        const sections = document.querySelectorAll('section');
+        const welcomeBox = document.querySelector('.welcome-box');
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        if (welcomeBox) {
+            observer.observe(welcomeBox);
+        }
+
+        // Custom Cursor Logic (Desktop only)
+        if (window.matchMedia("(min-width: 1024px)").matches) {
+            const cursorDot = document.querySelector('.cursor-dot');
+            const cursorOutline = document.querySelector('.cursor-outline');
+            
+            let mouseX = 0, mouseY = 0;
+            let outlineX = 0, outlineY = 0;
+
+            window.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                
+                cursorDot.style.left = mouseX + 'px';
+                cursorDot.style.top = mouseY + 'px';
+            });
+
+            function animateOutline() {
+                outlineX += (mouseX - outlineX) * 0.15;
+                outlineY += (mouseY - outlineY) * 0.15;
+                
+                cursorOutline.style.left = outlineX + 'px';
+                cursorOutline.style.top = outlineY + 'px';
+                
+                requestAnimationFrame(animateOutline);
+            }
+            animateOutline();
+
+            // Hover effects on interactive elements
+            const interactiveElements = document.querySelectorAll('a, button, .nav-link');
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => cursorOutline.classList.add('hover'));
+                el.addEventListener('mouseleave', () => cursorOutline.classList.remove('hover'));
+            });
+        } else {
+            // Remove custom cursor elements on mobile to prevent any rendering overhead
+            document.querySelector('.cursor-dot').style.display = 'none';
+            document.querySelector('.cursor-outline').style.display = 'none';
+            document.body.style.cursor = 'auto';
+        }
+    </script>
 </body>
 </html>
